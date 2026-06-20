@@ -19,11 +19,13 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt update
-          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf automake libtool libtool-bin m4 pkg-config zlib1g-dev libncurses-dev libffi-dev libssl-dev cmake
+          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf automake libtool libtool-bin m4 pkg-config zlib1g-dev libncurses-dev libffi-dev libssl-dev cmake libtool-doc
 
-      - name: Initialize libtoolize
+      - name: Initialize libtoolize and autoconf
         run: |
           libtoolize --install --force --copy 2>/dev/null || true
+          aclocal -I /usr/share/aclocal
+          autoconf
 
       - name: Install buildozer
         run: |

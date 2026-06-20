@@ -20,6 +20,11 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf automake libtool libtool-bin m4 pkg-config zlib1g-dev libncurses-dev libffi-dev libssl-dev cmake
+
+      - name: Initialize libtoolize
+        run: |
+          libtoolize --install --force --copy 2>/dev/null || true
+
       - name: Install buildozer
         run: |
           pip install --upgrade pip
